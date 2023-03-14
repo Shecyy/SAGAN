@@ -1,7 +1,7 @@
 # SAGAN
 SAGAN: An unsupervised image enhancement model
 
-This paper has been submitted to Artificial Intelligence Review. 
+This paper has been submitted to Artificial Intelligence Review. The code will be made public when our paper is accepted.
 
 ## Requirements
 *  Python 3.7.13
