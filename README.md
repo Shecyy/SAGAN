@@ -14,8 +14,11 @@ This paper has been submitted to Artificial Intelligence Review. The code will b
 *  Onnxruntime 1.13.1
 
 ## Datasets
-*  Training dataset: [unpaired images](https://drive.google.com/drive/folders/1fwqz8-RnTfxgIIkebFG2Ej3jQFsYECh0)
+*  Training dataset: [Unpaired images](https://drive.google.com/drive/folders/1fwqz8-RnTfxgIIkebFG2Ej3jQFsYECh0)
 *  Testing dataset: [MEF, LIME, NPE, DICM]()
+
+## Model
+Download SAGAN model from [Inference model]()
 
 ## Usage
 ```python
