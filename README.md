@@ -1,7 +1,10 @@
 # SAGAN
 SAGAN: Deep Semantic-Aware Generative Adversarial Network for Unsupervised Image Enhancement
 
-This paper has been submitted to Artificial Intelligence Review. The code will be made public when our paper is accepted.
+This paper has been submitted to Artificial Intelligence Review. The complete code will be made public when our paper is accepted.
+
+# Enhanced Images
+![Enhanced Images](/assets/enhanced-image.png)
 
 ## Requirements
 *  Python 3.7.13
@@ -15,26 +18,29 @@ This paper has been submitted to Artificial Intelligence Review. The code will b
 
 ## Datasets
 *  Training dataset: [Unpaired images](https://drive.google.com/drive/folders/1fwqz8-RnTfxgIIkebFG2Ej3jQFsYECh0)
-*  Testing dataset: [MEF, LIME, NPE, DICM]()
+*  Testing dataset: [MEF, LIME, NPE, DICM](https://drive.google.com/drive/folders/1XZnWBk73txM4drddqqq22RogIxe02Dei?usp=share_link)
 
 ## Model
-Download SAGAN model from [Inference model]()
+Download SAGAN model from [Inference model](https://drive.google.com/drive/folders/1XZnWBk73txM4drddqqq22RogIxe02Dei?usp=share_link)
 
 ## Usage
 ```python
 import numpy as np
 import onnxruntime
 
+# load a low-light image
 input_img = Image.open('test.png').convert('RGB')
 transform_list = [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
 transform = transforms.Compose(transform_list)
 input_img = transform(input_img)
 input_img = torch.unsqueeze(input_img, 0).numpy()
 
+# predict
 inference = onnxruntime.InferenceSession('model.onnx')
 input_img = {'input': input_img}
 output_image = inference.run(['output'], input_img)[0]
 
+# save enhanced image
 output_image = (np.transpose(output_image[0], (1, 2, 0)) + 1) / 2.0 * 255
 output_image = np.clip(output_image, 0, 255).astype(np.uint8)
 output_image = Image.fromarray(output_image)
