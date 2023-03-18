@@ -5,7 +5,7 @@ This paper has been submitted to Artificial Intelligence Review. The code will b
 
 ## Requirements
 *  Python 3.7.13
-*  Torch 1.12.0+cu116
+*  Torch 1.12.0
 *  Visdom 0.1.8.9
 *  Torchvision 0.13.0+cy116
 *  Numpy 1.21.6
