@@ -1,7 +1,7 @@
 # SAGAN
 SAGAN: Deep Semantic-Aware Generative Adversarial Network for Unsupervised Image Enhancement
 
-This paper has been submitted to Artificial Intelligence Review. The complete code will be made public when our paper is accepted.
+This paper has been submitted to Knowledge-Based Systems. The complete code will be made public when our paper is accepted.
 
 # Enhanced Images
 ![Enhanced Images](/assets/enhanced-image.png)
@@ -21,7 +21,7 @@ This paper has been submitted to Artificial Intelligence Review. The complete co
 *  Testing dataset: [MEF, LIME, NPE, DICM](https://drive.google.com/drive/folders/1XZnWBk73txM4drddqqq22RogIxe02Dei?usp=share_link)
 
 ## Model
-Download SAGAN model from [Inference model](https://drive.google.com/drive/folders/1XZnWBk73txM4drddqqq22RogIxe02Dei?usp=share_link)
+Download SAGAN model from [Inference model](https://drive.google.com/file/d/1SqlrhBprTJJri_49zrFy6t9XMBoWc-yD/view?usp=sharing)
 
 ## Usage
 ```python
@@ -30,6 +30,7 @@ import onnxruntime
 
 # load a low-light image
 input_img = Image.open('test.png').convert('RGB')
+input_img = input_img.resize((600, 400))
 transform_list = [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
 transform = transforms.Compose(transform_list)
 input_img = transform(input_img)
@@ -41,7 +42,7 @@ input_img = {'input': input_img}
 output_image = inference.run(['output'], input_img)[0]
 
 # save enhanced image
-output_image = (np.transpose(output_image[0], (1, 2, 0)) + 1) / 2.0 * 255
+output_image = np.transpose(output_image[0], (1, 2, 0))
 output_image = np.clip(output_image, 0, 255).astype(np.uint8)
 output_image = Image.fromarray(output_image)
 output_image.save('result.png')
